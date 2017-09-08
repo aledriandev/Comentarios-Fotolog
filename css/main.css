@@ -28,6 +28,10 @@ h1{
   font-weight: bolder;
 }
 
+p>b{
+  color: black;
+}
+
 textarea, input{
   width: 100%;
   border-radius: 0px;
@@ -60,4 +64,6 @@ footer{
 
 
 /* Estilos comentarios */
-
+#ale{
+  background-color: rgba(234, 147, 214, 0.8);
+}
