@@ -1,35 +1,42 @@
-/*aquí va tu código*/
+var coments = localStorage.getItem("coments");
+coments = JSON.parse(coments);
+if(coments == null)
+	coments = []; 
 
-function Usuarios (name,coment){
-	this.name = name;
-	this.coment = coment;
-}
+$(document).ready(function(){
+	muestraDatos()
+});
 
-var arrayUsuarios = [];
-var nombres;
-var losComents; 
-
+//guarda cada comentario solo si esta completo
 function guardarComentario(){
-	localStorage.nombre = document.getElementById('clave').value;
-	localStorage.comentario = document.getElementById('valor').value;
-	var comentarios = new Usuarios(localStorage.nombre,localStorage.comentario);
-	arrayUsuarios.push(comentarios);
+	var client = JSON.stringify({ 
+		name : $("#clave").val(), 
+		coment : $("#valor").val(),
+	});
 
-	localStorage.setItem('nombre',localStorage.nombre);
-	localStorage.setItem('comentario',localStorage.comentarios);
+	if ( $("#clave").val() != "" && $("#valor").val() != "" ) {
+		coments.push(client); 
+	}
+
+	$("#clave").val('');
+	$("#valor").val('');
+	localStorage.setItem("coments", JSON.stringify(coments));
 	muestraDatos();
+	return true; 
 }
 
-function recuperarDatos(){
-}
-
+//mostrar los datos en el div ale
 function muestraDatos(){
-
-	  	for (var i = 0; i < arrayUsuarios.length; i++) {
-	  		document.getElementById('ale').innerHTML =("La clave contiene el valor " + localStorage.getItem("nombre") + "<br />");  
-	  		//document.getElementById('ale').innerHTML = arrayUsuarios[i].name + "jsdhksd" + arrayUsuarios[i].coment;
-	  	}
-	  //document.getElementById('ale').innerHTML+=("La clave " + clave + "contiene el valor " + localStorage.getItem(clave) + "<br />");  
-	
+	$("#ale").html(""); 
+	for(var i in coments){ 
+		var comen = JSON.parse(coments[i]); 
+		$("#ale").append("<div class='ale'><p><b>"+comen.name+"</b></p><p>"+comen.coment+"</p></div>"); 
+	}
 }
-muestraDatos();
+
+//borra todos los datos
+function borrarTodo(){
+	localStorage.clear();
+	$("#ale").html("");
+	coments = [];
+}

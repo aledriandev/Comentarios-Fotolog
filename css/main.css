@@ -64,6 +64,15 @@ footer{
 
 
 /* Estilos comentarios */
-#ale{
+.ale{
   background-color: rgba(234, 147, 214, 0.8);
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 120%;
+  border-radius: 10px;
 }
+
+.ale p{
+  color: black
+}
+
